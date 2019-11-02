@@ -1,0 +1,5 @@
+使用nuget.exe删除服务器上的发布的包
+nuget.exe delete packageid version -ApiKey key -Source ServerIP:Port -NoPrompt
+
+examples
+.\nuget.exe delete MC.JT808 2.0.0 -ApiKey oy2e6scj64xnyet5croasiim7dgvpjyerluttdjzue2yvu -Source http://192.168.1.151:6000 -NoPrompt

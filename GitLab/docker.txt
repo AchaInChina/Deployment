@@ -1,0 +1,1 @@
+docker run -d --name 'gitlab' --hostname 'gitlab' --restart always -p 4443:443 -p 4480:80 -p 4422:22 -v /home/sage/Git/GitLab/config:/etc/gitlab -v /home/sage/Git/GitLab/data:/var/opt/gitlab -v /home/sage/Git/GitLab/logs:/var/log/gitlab gitlab/gitlab-ce:latest

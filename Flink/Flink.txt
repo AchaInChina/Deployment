@@ -1,0 +1,9 @@
+
+1 下载flink可执行压缩包并解压
+
+2 修改conf目录下的 flink-conf.yaml 
+	rest.port: 8082 这是web控制台的端口
+
+3 bin/start-cluster.sh 启动flink
+
+4 bin/stop-cluster.sh 停止

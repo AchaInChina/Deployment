@@ -1,0 +1,12 @@
+
+1 下载脚本
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+2 修改脚本权限
+	sudo chmod +x /usr/local/bin/docker-compose
+
+3 建立软连接
+	sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+4 测试
+	docker-compose --version

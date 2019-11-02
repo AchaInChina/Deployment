@@ -1,0 +1,8 @@
+
+1 yum install centos-release-scl
+
+2 yum-config-manager --enable rhel-server-rhscl-7-rpms
+
+3 yum install devtoolset-7
+
+4 scl enable devtoolset-7 bash

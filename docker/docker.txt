@@ -1,0 +1,12 @@
+
+1 安装
+	yum install -y docker
+
+2 启动
+	systemctl start docker
+
+3 开机启动
+	systemctl enable docker
+
+4 查看版本
+	docker version

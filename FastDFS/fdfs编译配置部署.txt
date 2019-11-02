@@ -1,0 +1,59 @@
+环境 Centos 7
+
+C C++环境 
+yum install -y gcc gcc-c++
+
+libevent 库依赖
+yum -y install libevent
+
+下载 libfastcommon 源码
+git clone https://github.com/happyfish100/libfastcommon.git
+
+进入到 libfastcommon 目录，指定make
+./make.sh
+库文件 libfastcommon.so 在 src目录下
+执行安装
+./make.sh install 
+
+下载 fastdfs源码
+git clone https://github.com/happyfish100/fastdfs.git
+进入到 fastdfs 源码目录
+./make.sh
+安装
+./make.sh install
+
+下载nginx插件
+git clone https://github.com/happyfish100/fastdfs-nginx-module.git
+编译nginx源码时，在configure时加上参数 --add-module=/the/path/to/插件源码的/src
+
+配置 tracker 
+修改 /etc/fdfs/tracker.conf 中的 base_path 用来存放tracker的日志和数据
+bind_addr 配置监听的ip
+port 配置监听的端口
+
+配置 storage 
+修改 /etc/fdfs/storage .conf  
+bind_addr 为ip
+port 为端口
+base_path 为日志和数据路径
+store_path0 为文件存储路径
+tracker_server 为 本storage的tracker的ip和端口
+
+将fastdfs 和插件源码目录里面的 http.conf(fastdfs ) mime.types(fastdfs ) mod_fastdfs.conf(插件)
+拷贝到 /etc/fdfs 目录下 
+修改 http.conf 中的 http.anti_steal.token_check_fail 为正确的 anti-steal.jpg 路径
+修改 mod_fastdfs.conf 中的 tracker_server 为实际的tracker的ip和port 
+storage_server_port 为实际的 storage 的端口 
+store_path0 为 stroge 存储数据的路径 
+url_have_group_name 配置为 true
+
+配置nginx中关于fdfs
+添加  负载均衡模块
+location ~/group[0-9] {
+            ngx_fastdfs_module;
+        }
+
+通过测试客户端上传即可获取到文件访问的url
+
+
+

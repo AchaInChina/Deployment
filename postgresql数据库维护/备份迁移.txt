@@ -1,0 +1,5 @@
+使用 pg_dump 指令备份
+ pg_dump -h localhost（或者确定的ip，localhost有一定可能验证失败） -U postgres -d iovsdb -f xxx.sql -W 
+
+ 使用 psql 指令导入数据
+ psql -h localhost -U postgres -d iovsdb -f xxx.sql -W

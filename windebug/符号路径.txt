@@ -1,0 +1,4 @@
+srv*d:/symbolslocal*http://msdl.microsoft.com/download/symbols 
+这个路径一定要带上，再调试的时候，如果没有这个，无法获取系统库的调试信息，从而无法调试
+
+dump文件调试，pdb文件要是源文件命，不然会找不到调试信息

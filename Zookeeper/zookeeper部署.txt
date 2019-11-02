@@ -1,0 +1,17 @@
+1 将zookeeper可执行压缩包下载
+
+2 解压压缩包，并创建一个data目录，不要在统计，data目录用来存放zookeeper运行期间产生的数据
+
+3 在解压后的bin所在目录级别，执行 bin/zkServer.sh start 会自动使用 conf/下面的zoo.cfg
+
+4 zoo.cfg 由  zoo_sample.cfg 而来，其中需要配置
+	dataDir=/home/sage/zookeeper/data
+	clientPort=2181
+	admin.serverPort=8081
+
+5 ./bin/zkServer.sh status 查看节点状态
+
+6 jps 查看zookeeper进程 
+	[sage@localhost zookeeper]$ jps
+	25602 Jps
+	24983 QuorumPeerMain 这是zookeeper进程

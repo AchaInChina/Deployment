@@ -1,0 +1,4 @@
+1.下载 jenkins.war
+
+2.命令行启动 jenkins
+	nohup java -jar jenkins.war --httpPort=6080

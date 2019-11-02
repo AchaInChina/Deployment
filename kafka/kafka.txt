@@ -1,0 +1,8 @@
+1 下载kafka可执行压缩包，解压
+
+2 修改 cofig 目录下的 server.properties
+	advertised.listeners=PLAINTEXT://192.168.1.151:9092 这个是客户端连接之后会用到的数据，必需写正确，不然客户端连接不上
+	log.dirs=/home/sage/kafka/logs log路径
+	zookeeper.connect=192.168.1.151:2181 zookeeper的ip和端口，用来在zookeeper上注册自身信息
+
+3 ./bin/kafka-server-start.sh -daemon config/server.properties 后台启动kafka broker

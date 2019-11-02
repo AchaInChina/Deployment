@@ -1,0 +1,9 @@
+！cs 02404c50 查看临界区信息
+dt _RTL_CRITICAL_SECTION 02404c50 查看临界区信息
+dt _RTL_CRITICAL_SECTION_DEBUG 02404c50 查看临界区debug信息
+！locks 查看哪些临界区被锁定
+
+
+备注
+ ntdll!RtlEnterCriticalSection 是临界区的函数入口
+ ChildEBP RetAddr Args to Child 中 第三个参数是临界区的首地址
