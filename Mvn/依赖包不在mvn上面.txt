@@ -1,0 +1,10 @@
+解决办法很简单，我们遇到这样的依赖的时候，只需要在项目的pom文件中做如下配置即可:
+
+<repositories>
+  <repository>
+	<id>clojars</id>
+	<url>http://clojars.org/repo/</url>
+  </repository>
+</repositories>
+
+即在仓库的远端配置上加上这个非mvn仓库
