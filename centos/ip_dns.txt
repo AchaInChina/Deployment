@@ -1,0 +1,14 @@
+1 编辑 /etc/sysconfig/network-scripts/ifcfg-* 网络设备
+	增加如下部分
+	ONBOOT=yes
+	IPADDR=192.168.1.*  设备的子网IP 
+	PREFIX=24
+	GATEWAY=192.168.1.1
+	IPV6_PRIVACY=no
+
+2 编辑 /etc/resolv.conf dns 配置文件
+	增加如下部分
+	nameserver 114.114.114.114
+	nameserver 8.8.8.8
+
+3 重启网络设备
