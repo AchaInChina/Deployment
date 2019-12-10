@@ -1,0 +1,45 @@
+<windows服务注册>
+1. 将 mc_service_register.exe mc_service_register.xml 文件名保持一致，后缀名不用管
+
+2. 在 mc_service_register.xml 中修改 
+	configuration
+		id ： 改为唯一的服务id
+		name ： 服务的名称
+		description ： 服务的描述
+		executable ： 服务执行的路径，可以为bat，也可以为exe 或者其他
+		arguments ： 服务执行时的命令行参数（如果此部分被注释了，需要取消注释）
+		stopexecutable ： 停止服务时的执行路径
+		stoparguments ： 停止服务执行时的命令行参数
+		depend ： 服务依赖的服务（填写服务id）
+3. 新建一个命令行 ，运行 mc_service_register.exe 并加上 install
+
+4. 在服务列表找到刚才建立的服务，并尝试启动和关闭，并观察是否正常
+<以上为windows服务注册的基本知识>
+
+添加 kafka 服务分为三步：下载kafka发布版包，增加zookeeper服务，增加kafka服务
+
+1. 下载 kafka安装包之后解压，windows主要是关注 bin\windows\*.bat
+
+2. 将第一部分的exe和xml重命名为 mc_zookeeper_register
+
+3. 修改xml中的 id 为 zookeeper_service，name 为 zookeeper_service，description 为 zookeeper_service
+	executable 为 E:\MQ\kafka_2.12-2.3.1\kafka_2.12-2.3.1\bin\windows\zookeeper-server-start.bat（绝对路径）
+	arguments 为 E:\MQ\kafka_2.12-2.3.1\kafka_2.12-2.3.1\config\zookeeper.properties （绝对路径）
+	stopexecutable 为 E:\MQ\kafka_2.12-2.3.1\kafka_2.12-2.3.1\bin\windows\zookeeper-server-stop.bat（绝对路径）
+
+4. 运行 mc_zookeeper_register 并加上 install 
+
+5. 在服务列表查看安装的服务信息
+
+6. 重复第二步 将文件名 改为 mc_kafka_register
+
+7. 修改xml中的 id 为 kafka_service，name 为 kafka_service，description 为 kafka_service
+	executable 为 E:\MQ\kafka_2.12-2.3.1\kafka_2.12-2.3.1\bin\windows\kafka-server-start.bat（绝对路径）
+	arguments 为 E:\MQ\kafka_2.12-2.3.1\kafka_2.12-2.3.1\config\server.properties （绝对路径）
+	stopexecutable 为 E:\MQ\kafka_2.12-2.3.1\kafka_2.12-2.3.1\bin\windows\kafka-server-stop.bat（绝对路径）
+
+8. 运行 mc_kafka_register 并加上 install
+
+9. 在服务列表查看安装的服务
+
+10. 如果服务未启动，需要手动启动服务
