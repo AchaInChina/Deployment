@@ -1,0 +1,17 @@
+<windows服务注册>
+1. 将 mc_service_register.exe mc_service_register.xml 文件名保持一致，后缀名不用管
+
+2. 在 mc_service_register.xml 中修改 
+	configuration
+		id ： 改为唯一的服务id
+		name ： 服务的名称
+		description ： 服务的描述
+		executable ： 服务执行的路径，可以为bat，也可以为exe 或者其他
+		arguments ： 服务执行时的命令行参数（如果此部分被注释了，需要取消注释）
+		stopexecutable ： 停止服务时的执行路径
+		stoparguments ： 停止服务执行时的命令行参数
+		depend ： 服务依赖的服务（填写服务id）
+3. 新建一个命令行 ，运行 mc_service_register.exe 并加上 install
+
+4. 在服务列表找到刚才建立的服务，并尝试启动和关闭，并观察是否正常
+<以上为windows服务注册的基本知识>
