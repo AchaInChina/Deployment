@@ -13,7 +13,7 @@
 
 	一般就查 total_time 就知道一条sql语句到底耗时多少，*blk* 相关的和buffer有联系，可能原因是索引创建问题
 	如 
-	select userid, dbid, query,total_time,rows from pg_stat_statements order by total_time desc limit 2;
+	select userid, dbid, query,total_time,rows from pg_stat_statements order by total_time desc limit 10;
 	返回
 	userid | dbid  |                                                query                                                 | total_time | rows
 	--------+-------+------------------------------------------------------------------------------------------------------+------------+-------
