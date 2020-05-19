@@ -1,0 +1,3 @@
+分析表的索引建立情况：DBCC showcontig('Table')
+
+执行重建索引命令： DBCC DBREINDEX('Table'')
