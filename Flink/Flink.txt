@@ -7,3 +7,13 @@
 3 bin/start-cluster.sh 启动flink
 
 4 bin/stop-cluster.sh 停止
+
+5 jobmanager.rpc.address:  jobmanager.rpc.port: 
+	这两项一个是rpc的地址，一个是rpc的端口，如果是填写的本地地址，那就在本地创建 jobmanager。如果填写的远程ip地址，那本地不会创建 jobmanager 只创建 taskmanager，并把 taskmanager 可调度资源挂载到填写的远程 jobmanager 下。
+
+6 taskmanager.numberOfTaskSlots 这个是 taskmanager 拥有的可用槽的数量，一个槽可以启动一个计算实例
+
+7 parallelism.default: 这个是一个计算实例启动后，计算实例的具体计算操作可以达到的最高并发数，
+	比方要计算班级每个人吃的馒头数，这是一个计算实例，如果只有一个slot，那在flink后台只能提交一个任务，如果有两个slot，则在flink后台可以提交两个任务。
+	在计算每个人吃的馒头数时，可以把一组，二组，三组，四组分开计算，这个就是并发，如果 parallelism.default 为 1，那只能在一个slot里面计算1，2，3，4组的数据，
+	如果为二，则可以在两个slot里面计算，1，2一个slot，3，4一个slot。注意，并发数不能超过集群里面的slot总数量，如果超过了，会抛出异常
