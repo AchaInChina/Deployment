@@ -1,0 +1,46 @@
+安装samba
+1.yum -y install samba samba-client
+
+启动samba
+2.systemctl start smb nmb
+
+查看samba服务进程
+3.ps -ef | grep -E 'smb|nmb'
+
+查看samba端口
+4.netstat -tunlp | grep -E 'smbd|nmbd'
+
+编辑samba配置文件
+5. 
+连接的路径 \\ip\shared
+[shared]
+	共享的目录
+	path = /home/sage/stream/
+	管理员
+	admin users = sage
+	可访问的用户
+	valid users = sage
+	浏览
+	browseable = yes
+	读写
+	writable = yes
+	创建权限
+	create mask = 0777
+
+重启samba服务
+6.systemctl restart smb nmb
+
+添加用户后输入密码
+7.smbpasswd -a sage
+
+关闭防火墙
+8.systemctl stop firewalld.service  systemctl disable firewalld.service
+
+关闭SeLinux
+9.
+ 临时关闭 setenforce 0
+ 永久关闭 修改配置文件/etc/selinux/config，将SELINU置为disabled
+ 查看状态 sestatus
+
+在电脑中打开
+10.在windows上映射网络驱动 输入 \\ip\shared(就是第五步中大括号中的内容)，输入新增的samba用户的账户和密码
