@@ -13,6 +13,7 @@
 6. mysql -u root -p 登录root
 
 7. set password=password("yourpassword");  
+或 update mysql.user set authentication_string=password('123qqq...A')   where user='root' and host='localhost';
 
 8. 跳过登录验证
 	vim /etc/my.cnf(注：windows下修改的是my.ini)
@@ -28,7 +29,10 @@
 	1.5、查看user表中的数据：select Host, User,Password from user;
 	1.6、修改user表中的Host:   update user set Host='%' where User='root';  
 		说明： % 代表任意的客户端,可替换成具体IP地址。
-　　1.7、最后刷新一下：flush privileges;
+　　	1.7、最后刷新一下：flush privileges;
+
+10.中文乱码问题，
+	如果 client connect database 都是 utf-8，而 character_set_server 是 latin1 则在 /etc/my.cnf 加一行 character-set-server=utf8 然后重启服务器
 
 
 	

@@ -1,0 +1,1 @@
+以管理员打开power shell 并执行 reg add “HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender” /v “DisableAntiSpyware” /d 1 /t REG_DWORD /f 后重启电脑
