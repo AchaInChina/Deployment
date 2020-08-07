@@ -1,0 +1,20 @@
+1.查看索引语法如下
+SHOW INDEX FROM <表名> [ FROM <数据库名>]
+
+2.增加索引
+ALTER TABLE table_name ADD INDEX index_name (column_list)
+
+ALTER TABLE table_name ADD UNIQUE (column_list)
+
+ALTER TABLE table_name ADD PRIMARY KEY (column_list)
+
+CREATE INDEX index_name ON table_name (column_list)
+
+CREATE UNIQUE INDEX index_name ON table_name (column_list)
+
+3.删除索引
+DROP INDEX index_name ON talbe_name
+
+ALTER TABLE table_name DROP INDEX index_name
+
+ALTER TABLE table_name DROP PRIMARY KEY
