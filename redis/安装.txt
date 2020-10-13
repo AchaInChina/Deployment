@@ -1,0 +1,21 @@
+sudo yum install epel-release
+sudo yum update
+sudo yum -y install redis
+sudo systemctl start redis
+//远程连接
+vi /etc/redis.conf
+#bind 127.0.0.1
+requirepass 密码
+sudo systemctl restart redis
+//控制指令
+systemctl start redis.service #启动redis服务器
+
+systemctl stop redis.service #停止redis服务器
+
+systemctl restart redis.service #重新启动redis服务器
+
+systemctl status redis.service #获取redis服务器的运行状态
+
+systemctl enable redis.service #开机启动redis服务器
+
+systemctl disable redis.service #开机禁用redis服务器
