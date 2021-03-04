@@ -14,6 +14,9 @@
 
 7. set password=password("yourpassword");  
 或 update mysql.user set authentication_string=password('123qqq...A')   where user='root' and host='localhost';
+8.0后要这么操作
+	ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '新密码';
+	flush privileges;
 
 8. 跳过登录验证
 	vim /etc/my.cnf(注：windows下修改的是my.ini)
@@ -33,6 +36,5 @@
 
 10.中文乱码问题，
 	如果 client connect database 都是 utf-8，而 character_set_server 是 latin1 则在 /etc/my.cnf 加一行 character-set-server=utf8 然后重启服务器
-
 
 	
