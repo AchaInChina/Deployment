@@ -10,3 +10,13 @@
 
 4 查看版本
 	docker version
+
+5 如果上面的步骤不行则采用下面的方式
+	Uninstalled Docker using:
+	yum remove docker-engine.x86_64 docker-engine-selinux.noarch
+	Installed again using:
+	curl -fsSL https://get.docker.com/ | sh
+	chkconfig docker on
+	service docker start
+	The result of last command is:
+	Redirecting...

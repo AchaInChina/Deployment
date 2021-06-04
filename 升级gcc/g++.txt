@@ -1,0 +1,4 @@
+# 安装gcc
+yum install gcc
+#安装 g++
+yum install gcc-c++
