@@ -1,0 +1,25 @@
+一个系统可以设置多个swap，不过一般来说一个就够了。
+执行swapon -s，如果该命令没有返回出结果，则代表该系统尚未配置过swap。
+
+检查可用的存储空间。通常，我们建立一个单独的分区作为swap。然而有时候由于硬件或软件的限制，新建分区的方式无法实现，这种情况下就可以建立一个swap文件来实现同样的功能。
+df -h
+
+创建Swap文件
+最快捷的创建方式是fallocate命令，该命令能够创建一个预分配指定大小空间的文件。输入如下指令创建一个4GB的文件：
+sudo fallocate -l 4G /swapfile
+
+启用Swap文件
+使用chmod命令进行权限操作：sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+使Swap文件永久生效
+udo vim /etc/fstab
+在文件末尾加入下面这行内容，告诉操作系统自动使用刚才创建的swap文件：
+/swapfile swap swap sw 0 0
+
+更改Swap配置（可选）
+sudo vim /etc/sysctl.conf
+将以下内容粘贴到文件末尾：
+vm.swappiness = 10 
+Swappiness 值越大交换的频率越高

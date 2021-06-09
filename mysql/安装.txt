@@ -4,7 +4,7 @@
 执行完成后会在/etc/yum.repos.d/目录下生成两个repo文件mysql-community.repo mysql-community-source.repo
 
 注意：必须进入到 /etc/yum.repos.d/目录后再执行以下脚本
-3. yum install mysql-server
+3. yum install mysql-server 或者 yum install mysql-community-server
 
 4. systemctl start mysqld #启动MySQL
 
