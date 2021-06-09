@@ -1,0 +1,8 @@
+1. ssh-keygen -t rsa
+2. scp pub_key user@linux:\path\to\save
+3. cd ~
+4. touch authorized_keys
+5. cat pub_key >> authorized_keys
+6. chmod 700 .ssh
+7. chmod 600 authorized_keys
+8. systemctl restart sshd
