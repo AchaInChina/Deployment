@@ -30,4 +30,7 @@ drop database [schema名称|数据库名称];--删除数据库
 8.关闭大小写敏感
     my.cnf 中加入 lower_case_table_names = 1
 
+9.执行脚本
+    use databases;
+    source /path/to/sql;
 
