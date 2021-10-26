@@ -1,0 +1,4 @@
+1. docker exec -it gitlab /bin/bash 进入dokcer内部
+2. cd /opt/gitlab/embedded/service/gitlab-rails/config 进入到配置文件目录
+3. vim gitlab.yml 打开配置文件
+4. gitlab-ctl restart 重启gitlab 
