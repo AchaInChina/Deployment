@@ -1,0 +1,23 @@
+1. 在建表语句后的;前增加
+	 PARTITION BY RANGE (to_days(t))
+	(PARTITION p20170801 VALUES LESS THAN (736907) ENGINE = InnoDB,
+ 	PARTITION p20170901 VALUES LESS THAN (736938) ENGINE = InnoDB,
+	 PARTITION pmax VALUES LESS THAN maxvalue ENGINE = InnoDB)
+
+2.查询分区信息
+	select PARTITION_NAME as "分区",TABLE_ROWS as "行数" from information_schema.partitions where table_schema="mysql_test" and table_name="test_11";
+
+
+3.新增分区
+	ALTER TABLE t1 ADD PARTITION (PARTITION p3 VALUES LESS THAN (2002));
+
+4.删除分区
+	ALTER TABLE t1 DROP PARTITION p0, p1;
+
+5.截取分区
+	ALTER TABLE t1 TRUNCATE PARTITION p0;
+	ALTER TABLE t1 TRUNCATE PARTITION p1, p3;
+
+6.更多详细操作
+	https://www.cnblogs.com/xibuhaohao/p/10154281.html
+	

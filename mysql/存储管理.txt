@@ -1,0 +1,44 @@
+1.
+查看数据库大小查看数据库的大小
+use 数据库名;
+SELECT sum(DATA_LENGTH)+sum(INDEX_LENGTH) FROM information_schema.TABLES where TABLE_SCHEMA='数据库名';
+
+2.
+查看表的最后mysql修改时间
+select TABLE_NAME,UPDATE_TIME from INFORMATION_SCHEMA.tables where TABLE_SCHEMA='数据库名';
+可以通过查看数据库中表的mysql修改时间，来确定mysql数据库是否已经长期不再使用。
+
+3.
+查看数据库中各个表占用的空间大小
+如果想知道MySQL数据库中每个表占用的空间、表记录的行数的话，可以打开MySQL的 information_schema 数据库。在该库中有一个 TABLES 表，这个表主要字段分别是：
+TABLE_SCHEMA : 数据库名
+TABLE_NAME：表名
+ENGINE：所使用的存储引擎
+TABLES_ROWS：记录数
+DATA_LENGTH：数据大小
+INDEX_LENGTH：索引大小
+其他字段请参考MySQL的手册，我们只需要了解这几个就足够了。
+所以要知道一个表占用空间的大小，那就相当于是 数据大小 + 索引大小 即可。
+SQL:
+SELECT TABLE_NAME,DATA_LENGTH+INDEX_LENGTH,TABLE_ROWS FROM TABLES WHERE TABLE_SCHEMA='数据库名' AND TABLE_NAME='表名'
+清空mysql命令历史:
+先退出MySQL,然后用任意一种方式清空 $HOME/.mysql_history文件中的内容.
+例如:echo>$HOME/.mysql_history
+
+4.
+MySQL利用通配符模糊匹配数据库进行grant
+root@(none) 09:52:17>grant all privileges on `dp%`.* to dp_admin identified by 'mypasswd';
+Query OK, 0 rows affected (0.00 sec)
+###注意这里不是单引号'，而是反单引号`
+查看所有数据库容量大小
+selecttable_schemaas'数据库',sum(table_rows)as'记录数',sum(truncate(data_length/1024/1024,2))as'数据容量(MB)',sum(truncate(index_length/1024/1024,2))as'索引容量(MB)'frominformation_schema.tablesgroupbytable_schemaorderbysum(data_length)desc,sum(index_length)desc;
+查看所有数据库各表容量大小
+selecttable_schemaas'数据库',
+table_nameas'表名',
+table_rowsas'记录数',truncate(data_length/1024/1024,2)as'数据容量(MB)',truncate(index_length/1024/1024,2)as'索引容量(MB)'frominformation_schema.tablesorderbydata_lengthdesc, index_lengthdesc;
+查看指定数据库容量大小
+selecttable_schemaas'数据库',sum(table_rows)as'记录数',sum(truncate(data_length/1024/1024,2))as'数据容量(MB)',sum(truncate(index_length/1024/1024,2))as'索引容量(MB)'frominformation_schema.tableswheretable_schema='mysql';
+查看指定数据库各表容量大小
+selecttable_schemaas'数据库',
+table_nameas'表名',
+table_rowsas'记录数',truncate(data_length/1024/1024,2)as'数据容量(MB)',truncate(index_length/1024/1024,2)as'索引容量(MB)'frominformation_schema.tableswheretable_schema='mysql'orderbydata_lengthdesc, index_lengthdesc;
