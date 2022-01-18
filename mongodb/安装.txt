@@ -1,0 +1,48 @@
+1. Create a /etc/yum.repos.d/mongodb-org-5.0.repo file so that you can install MongoDB directly using yum:
+	[mongodb-org-5.0]
+	name=MongoDB Repository
+	baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/5.0/x86_64/
+	gpgcheck=1
+	enabled=1
+	gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc
+
+2. sudo yum install -y mongodb-org
+
+3. ps --no-headers -o comm 1
+	确定当前系统
+
+4. sudo systemctl start mongod
+
+5. sudo systemctl daemon-reload
+	如果看到如下错误时：
+	If you receive an error similar to the following when starting mongod:
+
+	Failed to start mongod.service: Unit mongod.service not found.
+
+	Run the following command first:
+
+
+6. sudo systemctl status mongod
+
+
+7. sudo systemctl enable mongod
+	开机自启动
+
+8. sudo systemctl stop mongod
+
+9. sudo systemctl restart mongod
+
+10. mongosh
+	进入
+
+11. 开启远程访问
+      修改配置监听的地址为0.0.0.0.
+
+
+12. 卸载
+	sudo service mongod stop
+	sudo yum erase $(rpm -qa | grep mongodb-org)
+	sudo rm -r /var/log/mongodb
+	sudo rm -r /var/lib/mongo
+
+

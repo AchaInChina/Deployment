@@ -1,0 +1,30 @@
+1. mongosh --port 27017
+
+2.  use admin
+	db.createUser(
+	  {
+	    user: "myUserAdmin",
+	    pwd: passwordPrompt(), // or cleartext password
+	    roles: [
+	      { role: "userAdminAnyDatabase", db: "admin" },
+	      { role: "readWriteAnyDatabase", db: "admin" }
+	    ]
+	  }
+	)
+
+3. db.adminCommand( { shutdown: 1 } )
+	关闭实例
+
+4. if you start the mongod using a configuration file, add the security.authorization configuration file setting:
+	security:
+      authorization: enabled
+
+5. mongosh --port 27017  --authenticationDatabase \
+    "admin" -u "myUserAdmin" -p
+
+6. mongosh --port 27017
+	use admin
+	db.auth("myUserAdmin", passwordPrompt()) // or cleartext password
+
+
+7. 在某个数据库中新建用户，该数据库是该用户的鉴权数据库，但是用户的角色可以分配到不同的数据库，即用户的鉴权数据库和用户的角色权限数据库是分开的
