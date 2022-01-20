@@ -1,0 +1,15 @@
+1. 修改 /etc/my.cnf
+	datadir="目标路径"
+
+2. 停止 mysql服务器
+	systemctl stop mysqld
+
+3. cp -r "mysql原文件路径" "目标路径"
+
+
+4. chown -r mysql:mysql "目标路径"
+
+5. systemctl strat mysqld
+
+6. systemctl status msyqld 
+	检查mysql服务状态
