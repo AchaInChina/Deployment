@@ -1,0 +1,40 @@
+1. 脚本
+	PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/webuser1/.local/bin:/home/webuser1/bin
+
+	# gateway
+	APP_GATEWAY_SERVER="./product_deploy_server"
+
+	function process_exists()
+	{
+	    exists=$(pgrep -fc $1)
+	    return $exists
+	}
+
+	function restart_process_if_die()
+	{
+	    program=$1
+	    cmd=$2
+	    process_exists $program
+	    if [ $? -eq 0 ]; then
+	        printf "Process ${program} die. restarting\n"
+	        eval $cmd
+	        status=$?
+	        if [ $status -eq 0 ]; then
+	            pid=$(pgrep -f $1)
+	            printf "Process ${program} restarted. pid=%d\n" $pid
+	        else
+	            printf "Process ${program} restart failed. status=%d\n" $status
+	        fi
+	    else
+	        printf "Process ${program} alive. \n"
+	    fi
+	}
+
+	cd /home/webuser1/product_deploy/gateway
+	restart_process_if_die ./product_deploy_server ./product_deploy_server
+
+2.增加定时任务
+	*/1 * * * * root sh /home/webuser1/product_deploy/gateway/gateway_monitor.sh > /tmp/gateway_monitor.log 2>&1
+
+3.查看任务是否执行
+	sudo systemctl status crond
