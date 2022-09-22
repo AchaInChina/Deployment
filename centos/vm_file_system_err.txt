@@ -1,0 +1,10 @@
+XFS_WANT_CORRUPTED_GOTO
+
+ls -l /dev/mapper
+
+xfs_repair /dev/mapper/cl_muban-root
+遇到错误
+xfs_repair -L /dev/mapper/cl_muban-root
+
+重启
+init 6
