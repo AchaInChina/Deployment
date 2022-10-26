@@ -1,0 +1,6 @@
+//简单实现
+
+//先把数据存入备份表
+insert into dst_table select * from src_table where condition
+//删除源表中的数据
+delete from src_table where condition
