@@ -1,0 +1,33 @@
+1. 在 windows fonts 目录下找到 微软雅黑字体拷贝
+
+2. 使用字体提取工具提取 ttc 字体文件到 ttf
+	如果直接使用ttc，不报错，但是中文会不显示
+
+3. 在jasperReports Studio
+	windows ->perferrense ->jaspersoft studio ->fonts
+	add ->输入 familyname 最好用个英文首字母 -> trueType(.ttf) ->PDF Encoding (Identity-H) -> 勾选 Embed this font in PDF document
+	然后在 fonts 界面 点击 export 生成jar包
+	将 jar 在 springboot 的 resources 目录下解压后得到： 
+		jasperreports_extension.properties
+			内容为：
+				net.sf.jasperreports.extension.registry.factory.fonts=net.sf.jasperreports.engine.fonts.SimpleFontExtensionsRegistryFactory
+				net.sf.jasperreports.extension.simple.font.families.ireportfamily1667906435353=fonts/fontsfamily1667906435353.xml
+		fonts(文件夹):
+			mryh(在add时输入的英文名的文件夹)
+				msyhxxx.ttf
+				msyhxxx.ttf
+			fontsfamilyxxxxxx.xml
+				内容为：
+					<?xml version="1.0" encoding="UTF-8"?>
+					<fontFamilies>
+						<fontFamily name="mryh">
+							<normal><![CDATA[fonts/mryh/msyh001.ttf]]></normal>
+							<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+							<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+							<exportFonts/>
+						</fontFamily>
+					</fontFamilies>
+
+4. 打包程序后上传到服务器即可
+
+				
