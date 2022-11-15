@@ -1,0 +1,5 @@
+1. 找到下面的文件并编辑
+	vi /usr/lib/sysctl.d/00-system.conf
+
+2. 在文件的最后加入如下代码
+	net.ipv4.ip_forward = 1
