@@ -37,4 +37,7 @@
 10.中文乱码问题，
 	如果 client connect database 都是 utf-8，而 character_set_server 是 latin1 则在 /etc/my.cnf 加一行 character-set-server=utf8 然后重启服务器
 
+11. MySQL GPG 密钥已过期导致
+	rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
 	
