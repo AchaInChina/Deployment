@@ -1,0 +1,2 @@
+1. 在虚拟机重启以后，ifconfig 只有lo，没有ens33，
+2. sudo /sbin/dhclient 
