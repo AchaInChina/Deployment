@@ -1,0 +1,63 @@
+广播数据类型：
+
+Flags: 
+	TYPE = 0x01。这个数据用来标识设备 LE 物理连接的功能。DATA 是 0 到多个字节的 Flag 值，每个 bit 上用 0 或者 1 来表示是否为 True。如果有任何一个 bit 不为 0，并且广播包是可连接的，就必须包含此数据。各 bit 的定义如下：
+	bit 0: LE 有限发现模式
+	bit 1: LE 普通发现模式
+	bit 2: 不支持 BR/EDR
+	bit 3: 对 Same Device Capable(Controller) 同时支持 BLE 和 BR/EDR
+	bit 4: 对 Same Device Capable(Host) 同时支持 BLE 和 BR/EDR
+	bit 5..7: 预留
+
+Service UUID: 
+	广播数据中一般都会把设备支持的 GATT Service 广播出来，用来告诉外面本设备所支持的 Service。有三种类型的 UUID：16 bit, 32bit, 128 bit。广播中，每种类型类型有有两个类别：完整和非完整的。这样就共有 6 种 AD Type。
+	非完整的 16 bit UUID 列表： TYPE = 0x02;
+	完整的 16 bit UUID 列表： TYPE = 0x03;
+	非完整的 32 bit UUID 列表： TYPE = 0x04;
+	完整的 32 bit UUID 列表： TYPE = 0x05;
+	非完整的 128 bit UUID 列表： TYPE = 0x06;
+	完整的 128 bit UUID 列表： TYPE = 0x07;
+
+
+Local Name: 
+	设备名字，DATA 是名字的字符串。 Local Name 可以是设备的全名，也可以是设备名字的缩写，其中缩写必须是全名的前面的若干字符。
+	设备全名： TYPE = 0x08
+	设备简称： TYPE = 0x09
+
+TX Power Level: 
+	TYPE = 0x0A，表示设备发送广播包的信号强度。DATA 部分是一个字节，表示 -127 到 + 127 dBm。
+
+带外安全管理（Security Manager Out of Band）：
+	TYPE = 0x11。DATA 也是 Flag，每个 bit 表示一个功能：
+	bit 0: OOB Flag，0 表示没有 OOB 数据，1 表示有
+	bit 1: 支持 LE
+	bit 2: 对 Same Device Capable(Host) 同时支持 BLE 和 BR/EDR
+	bit 3: 地址类型，0 表示公开地址，1 表示随机地址
+
+外设（Slave）连接间隔范围：
+	TYPE = 0x12。数据中定义了 Slave 最大和最小连接间隔，数据包含 4 个字节：
+	前 2 字节：定义最小连接间隔，取值范围：0x0006 ~ 0x0C80，而 0xFFFF 表示未定义；
+	后 2 字节：定义最大连接间隔，同上，不过需要保证最大连接间隔大于或者等于最小连接间隔。
+
+服务搜寻：
+	外围设备可以要请中心设备提供相应的 Service。其数据定义和前面的 Service UUID 类似：
+		16 bit UUID 列表： TYPE = 0x14
+		32 bit UUID 列表： TYPE = 0x??
+		128 bit UUID 列表： TYPE = 0x15
+
+Service Data: Service 对应的数据：
+	16 bit UUID Service: TYPE = 0x16, 前 2 字节是 UUID，后面是 Service 的数据；
+	32 bit UUID Service: TYPE = 0x??, 前 4 字节是 UUID，后面是 Service 的数据；
+	128 bit UUID Service: TYPE = 0x??, 前 16 字节是 UUID，后面是 Service 的数据；
+
+公开目标地址：
+	TYPE = 0x17，表示希望这个广播包被指定的目标设备处理，此设备绑定了公开地址，DATA 是目标地址列表，每个地址 6 字节。
+
+随机目标地址：
+	TYPE = 0x18，定义和前一个类似，表示希望这个广播包被指定的目标设备处理，此设备绑定了随机地址，DATA 是目标地址列表，每个地址 6 字节。
+
+Appearance：
+	TYPE = 0x19，DATA 是表示了设备的外观。
+
+厂商自定义数据: 
+	TYPE = 0xFF，厂商自定义的数据中，前两个字节表示厂商 ID，剩下的是厂商自己按照需求添加，里面的数据内容自己定义。
