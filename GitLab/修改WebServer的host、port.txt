@@ -1,4 +1,20 @@
 1. docker exec -it gitlab /bin/bash 进入dokcer内部
-2. cd /opt/gitlab/embedded/service/gitlab-rails/config 进入到配置文件目录
-3. vim gitlab.yml 打开配置文件
-4. gitlab-ctl restart 重启gitlab 
+
+2. vim /etc/gitlab/gitlab.rb 
+	加入 
+	external_url '你想要的url+端口'
+
+3. 继续在 /etc/gitlab/gitlab.rb 
+	查找 nginx['listen_port'] 
+	改为 nginx['listen_port'] = 80
+	这一步是告诉gitlab内部，不要使用 external_url 中的端口，而是用此处的端口
+
+4. cd /opt/gitlab/embedded/service/gitlab-rails/config 进入到配置文件目录
+5. vim gitlab.yml 打开配置文件
+	修改 gitlab 中的 host port 与 external_url 相匹配
+
+6. 执行 gitlab-ctl reconfigure 即刻刷新配置，检查是否成功
+
+7. gitlab-ctl restart 重启gitlab 
+
+
