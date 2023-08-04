@@ -34,6 +34,7 @@
 	restart_process_if_die ./product_deploy_server ./product_deploy_server
 
 2.增加定时任务
+	vim /etc/crontab
 	*/1 * * * * root sh /home/webuser1/product_deploy/gateway/gateway_monitor.sh > /tmp/gateway_monitor.log 2>&1
 
 3.查看任务是否执行

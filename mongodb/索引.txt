@@ -1,0 +1,19 @@
+1. 关闭用户校验
+	/etc/mongod.conf
+	注释
+	#security:
+	  #authorization: enabled
+
+2. mongosh 登录 数据库
+
+3. use [目标数据库]
+
+4. db.system.profile.find().pretty() 看看是否有慢连接
+
+5. db.currentOp()  看看哪个sql语句执行慢
+
+6. 发现 planSummary : COLLSCAN
+
+7. 增加索引
+   db.表名.createIndex({表字段:1},{background:true,"name":"indexName"})
+   db.表名.getIndexes()
