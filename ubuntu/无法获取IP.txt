@@ -1,2 +1,17 @@
+方法一
 1. 在虚拟机重启以后，ifconfig 只有lo，没有ens33，
 2. sudo /sbin/dhclient 
+
+
+方法二
+step 1:
+service network-manager stop
+sudo nano /var/lib/NetworkManager/NetworkManager.state
+
+step 2:
+修改NetworkEnabled=true
+ctrl x + ctrl t
+选择NetworkManager.state  回车
+
+setp 3:
+service network-manager start
