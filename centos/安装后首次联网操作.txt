@@ -1,0 +1,8 @@
+1. nmcli connection show 
+	该命令会返回 4 列数据. 分别是 NAME(联网代号), UUID(识别码), TYPE网卡类型, DEVICE(网卡名称).
+
+2. nmcli connection show 联网代号
+
+3. nmcli connection modify 联网代号 connection.autoconnect yes ipv4.method auto
+
+至此，系统当前已可以联网
