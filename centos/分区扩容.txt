@@ -1,0 +1,35 @@
+1. fdisk -l 查看新磁盘的分区
+
+2. fdisk /dev/sda 对新加的磁盘进行分区操作
+
+3. p 查看已分区数
+
+4. n 新建一个分区 
+
+5. p 建主分区
+
+6. 分区号等默认选择，可以直接回车
+
+7. p 查看当前分区
+
+8. w 保存，操作后会显示报错
+
+9. reboot 重启
+
+10. vgdisplay 查看磁盘卷组名 【VG Name】
+
+11. pvcreate /dev/sda3 这里3和第6部相符
+
+12. vgextend centos /dev/sda3  把刚初始化的分区加入到虚拟卷组，如果 【 Couldn't create temporary archive name】 需要先释放一点空间
+
+13. vgdisplay 看看 free pe
+
+14. df -h 查看需要扩容的文件系统名 【/dev/mapper/centos-root】
+
+15. lvextend -L +19G /dev/mapper/centos-root 扩容已有的卷组容量
+
+16. cat /etc/fstab | grep centos-root 查看文件系统的格式
+
+17. xfs_growfs /dev/mapper/centos-root xfs_growfs 文件系统名，不同的文件系统要用不同的命令，不然会导致报错
+
+18. df -h 检测是否ok
