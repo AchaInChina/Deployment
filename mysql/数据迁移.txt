@@ -3,3 +3,6 @@ mysqldump -u username -p dbname table1 table2 ... > backupname.sql
 
 2. 库备份
 mysqldump -u username -p dbname > backupname.sql
+
+3. 表结构备份
+mysqldump -u username -p -d dbname table1 table2 ... > backupname.sql

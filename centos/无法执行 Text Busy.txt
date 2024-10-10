@@ -1,0 +1,5 @@
+1.查找进程
+	sudo fuser 文件名称
+
+2.杀掉
+	sudo kill -9 
