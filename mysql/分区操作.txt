@@ -21,4 +21,7 @@
 6.更多详细操作
 	https://www.cnblogs.com/xibuhaohao/p/10154281.html
 	https://blog.csdn.net/u013490280/article/details/111033099
+
+7.分区操作通过时间计算
+	ALTER TABLE t1 ADD PARTITION (PARTITION p20250101 VALUES LESS THAN (TO_DAYS('2025-01-01')));
 	
