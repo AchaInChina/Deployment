@@ -1,0 +1,23 @@
+1. 在官网下载对应的ndk版本
+
+2. cmake下载安装
+
+3. 配置好路径后，执行 android_cross.sh
+
+4. 拷贝 so a 文件 到 android 工程
+
+5. 配置 CMakeLists.txt
+
+	增加头文件路径
+	target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/third/libuv-1.49.2/include)
+
+	链入到现有的链接参数内
+
+	target_link_libraries(${CMAKE_PROJECT_NAME}
+    # List libraries link to the target library
+    android
+    log
+    ${CMAKE_SOURCE_DIR}/third/libuv-1.49.2/bin/libuv.so #注意放在这里，不要单独出来
+    )
+
+6. 交叉编译环境是ubuntu
