@@ -58,3 +58,5 @@ cp /usr/share/doc/rsync/examples/rsyncd.conf
 	secrets file = /cygdrive/f/rsync_back_up/rsyncd.password
 	transfer logging = yes
 
+6. 客户端命令行
+	echo sudo密码 |  sudo -S rsync -auv --password-file=/etc/rsyncd.passwd 密码文件内的用户名@192.168.0.4::data /mnt/d/windows_auto/
