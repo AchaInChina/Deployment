@@ -37,3 +37,24 @@ hosts allow=*
 
 4. Ubuntu系统还需要
 cp /usr/share/doc/rsync/examples/rsyncd.conf
+
+5. windows 配置文件
+	use chroot = false
+	strict modes = false
+	hosts allow = *
+	log file = rsyncd.log
+	pid file = rsyncd.pid
+	uid = 0
+	gid = 0
+
+	[data]
+	path = /cygdrive/f/rsync_back_up
+	comment = data
+	ignore errors
+	read only = no
+	list = yes
+	host allow = *
+	auth users = rsyncuser
+	secrets file = /cygdrive/f/rsync_back_up/rsyncd.password
+	transfer logging = yes
+
